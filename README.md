@@ -10,6 +10,7 @@ And a tool to help you understand the root of all the classical algorithms inste
 - KNN
 - Naive Bayes
 - Decision Tree
+- Random Forest
 - Logistic Regression
 - SVM
 - AdaBoost
