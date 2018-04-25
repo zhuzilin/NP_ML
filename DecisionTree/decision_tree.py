@@ -47,7 +47,7 @@ class Node:
         self.key = key
         self.val = val
         self.children = []
-    
+        
     def __str__(self, indent=0):
         ans = ""
         if not self.children:
@@ -67,8 +67,10 @@ class DecisionTree:
     def __init__(self, epsilon=0):
         self.root = Node("root", 0)
         self.epsilon = epsilon
-    
+        self.type = None
+        
     def fit(self, x, y, type="ID3", detailed=False):
+        self.type = type
         if type == "CART":
             self.CARTgenerate(x, y, self.root, detailed)
         else:
@@ -134,14 +136,43 @@ class DecisionTree:
                 min_gini = gini
                 min_feature = i
                 min_feature_val = feature_val
-        child_true = root.addChild(str(min_feature)+str(min_feature_val), True)
+        child_true = root.addChild((min_feature, min_feature_val,), True)
         self.CARTgenerate(x[x[:, min_feature]==min_feature_val], y[x[:, min_feature]==min_feature_val], child_true, detailed)
-        child_false = root.addChild(str(min_feature)+str(min_feature_val), False)
+        child_false = root.addChild((min_feature, min_feature_val,), False)
         self.CARTgenerate(x[x[:, min_feature]!=min_feature_val], y[x[:, min_feature]!=min_feature_val], child_false, detailed)
     
     # TODO: find nice regularization function
     def pruning(self, root):
         pass
+    
+    def predict(self, x):
+        assert(len(self.root.children) > 0)
+        if len(x.shape) == 1:
+            tmp = self.root
+            if self.type == 'CART':
+                while len(tmp.children) > 1:
+                    feature = tmp.children[0].key[0]
+                    if x[feature] == tmp.children[0].key[1]:
+                        tmp = tmp.children[0]
+                    else:
+                        tmp = tmp.children[1]
+                if len(tmp.children) == 1 and tmp.children[0].key == 'leaf':
+                    return tmp.children[0].val
+            else:
+                while len(tmp.children) > 1:
+                    feature = tmp.children[0].key
+                    if x[feature] == tmp.children[0].val:
+                        tmp = tmp.children[0]
+                    else:
+                        tmp = tmp.children[1]
+                if len(tmp.children) == 1 and tmp.children[0].key == 'leaf':
+                    return tmp.children[0].val
+        else:
+            assert(len(x.shape) == 2)
+            ans = []
+            for test in x:
+                ans.append(self.predict(test))
+            return ans
     
 x = np.array([["young",    False, False, "ordinary"],
               ["young",    False, False, "good"],
@@ -178,3 +209,4 @@ y = np.array([False,
 dt = DecisionTree()
 dt.fit(x, y, type="CART", detailed=True)
 print(dt.root)
+print(dt.predict(x))
