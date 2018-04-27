@@ -22,14 +22,19 @@ And a tool to help you understand the root of all the classical algorithms inste
     + LDA
   * [Time Series Analysis](#time-series-analysis)
     + AR
-- Usage
-  * Direct Usage
+- [Usage](#usage)
   * Installation
+  * Direct Usage
 - [Reference](#reference)
 ## Algorithm List<a name="algorithm-list"></a>
 ### Classical ML<a name="classical-ml"></a>
 - Perceptron
-![perceptron.png](https://github.com/zhuzilin/NP_ML/tree/master/visual_examples/figures/perceptron.png "Perceptron Result")
+```
+  $ cd visual_examples
+  $ python perceptron_primary.py
+```
+![perceptron.png](https://raw.githubusercontent.com/zhuzilin/NP_ML/master/visual_examples/figures/perceptron.png "Perceptron Result")
+
 - KNN
 - Naive Bayes
 - Decision Tree
@@ -43,7 +48,16 @@ And a tool to help you understand the root of all the classical algorithms inste
 ### Time Series Analysis<a name="time-series-analysis"></a>
 - AR
 
-## Usage
+## Usage<a name="usage"></a>
+- Installation
+
+If you want to use the visual example, please install the package by:
+```
+  $ git clone https://github.com/zhuzilin/NP_ML
+  $ cd NP_ML
+  $ python setup.py install
+```
+
 - Direct Usage
 
 If you just what to try each model, just run the model_name.py file in the np_ml/model_name/ file.
@@ -53,15 +67,6 @@ For example:
 ```
   $ git clone https://github.com/zhuzilin/NP_ML
   $ cd NP_ML/np_ml/perceptron
-  $ python setup.py install
-```
-
-- Installation
-
-If you want to use the visual example, please install the package by:
-```
-  $ git clone https://github.com/zhuzilin/NP_ML
-  $ cd NP_ML
   $ python setup.py install
 ```
 ## Reference<a name="reference"></a>
