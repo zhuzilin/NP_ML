@@ -45,5 +45,5 @@ if __name__ == '__main__':
     test_y = (test_y == "positive")
                   
     rf = RandomForest(2)
-    rf.fit(train_x[:, :], train_y, detailed=False)
-    print(rf.evaluate(test_x[:, :], test_y))
+    rf.fit(train_x, train_y, detailed=False)
+    print(rf.evaluate(test_x, test_y))
