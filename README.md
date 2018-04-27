@@ -55,7 +55,7 @@ $ python perceptron_primary.py
 - Naive Bayes
 - Decision Tree
 
-For decision tree, the example used the UCI/tic=tac-toe dataset. The input is the status of 9 block and the result is whether x win.
+For decision tree, the example used the UCI/tic-tac-toe dataset. The input is the status of 9 block and the result is whether x win.
 <p align="center">
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Tic_tac_toe.svg/2000px-Tic_tac_toe.svg.png" width="200">
 </p>
