@@ -42,39 +42,6 @@ train_y = (train_y == "positive")
 test_x = test[:, :-1]
 test_y = test[:, -1]
 test_y = (test_y == "positive")
-'''
-x = np.array([["young",    False, False, "ordinary"],
-              ["young",    False, False, "good"],
-              ["young",    True,  False, "good"],
-              ["young",    True,  True,  "ordinary"],
-              ["young",    False, False, "ordinary"],
-              ["mid-life", False, False, "ordinary"],
-              ["mid-life", False, False, "good"],
-              ["mid-life", True,  True,  "good"],
-              ["mid-life", False, True,  "very good"],
-              ["mid-life", False, True,  "very good"],
-              ["old",      False, True,  "very good"],
-              ["old",      False, True,  "good"],
-              ["old",      True,  False, "good"],
-              ["old",      True,  False, "very good"],
-              ["old",      False, False, "ordinary"]])
-
-y = np.array([False,
-              False,
-              True,
-              True,
-              False,
-              False,
-              False,
-              True,
-              True,
-              True,
-              True,
-              True,
-              True,
-              True,
-              False])
-'''
               
 rf = RandomForest(2)
 rf.fit(train_x[:, :], train_y, detailed=False)

@@ -8,7 +8,7 @@ def gram(x):
 
 class Perceptron:
     def __init__(self, dim=2, eta=1):
-        self.dim = 2
+        self.dim = dim
         self.eta = eta
         self.alpha = None  # np.random.randn(dim)
         self.W = np.zeros(dim)  # np.random.randn(dim)
@@ -49,10 +49,3 @@ class Perceptron:
         return -np.sum(dis*(dis<0))*1/LA.norm(self.W)
         
         
-p = Perceptron()
-p.fit(np.array([[3, 3], 
-                [4, 3],
-                [1, 1]]), np.array([1, 1, -1]), detailed=True)
-print(p.predict(np.array([[3, 3], 
-                          [4, 3],
-                          [1, 1]])))
