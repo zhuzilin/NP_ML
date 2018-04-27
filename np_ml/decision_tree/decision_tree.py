@@ -3,25 +3,28 @@ import numpy as np
 def entropy(col):
     _, cnts = np.unique(col, return_counts=True)
     cnts = np.array(cnts)/len(col)
-    cnts[cnts!=0] = cnts[cnts!=0]*np.log2(cnts[cnts!=0])
-    return -np.sum(cnts)
+    return -np.sum(cnts*np.log2(cnts))
 
 # For ID3
 def calcInforGain(col_x, col_y):
     HD = entropy(col_y)
     HDA = 0
-    unique = np.unique(col_x)
-    for key in unique:
-        HDA += entropy(col_y[col_x == key])
+    unique, cnts = np.unique(col_x, return_counts=True)
+    cnts = np.array(cnts)/len(col_x)
+    cnts = dict(zip(unique, cnts))
+    for key, val in cnts.items():
+        HDA += val*entropy(col_y[col_x == key])
     return HD - HDA, unique
 
 # For C4.5
 def calcInforGainRatio(col_x, col_y):
     HD = entropy(col_y)
     HDA = 0
-    unique = np.unique(col_x)
-    for key in unique:
-        HDA += entropy(col_y[col_x == key])
+    unique, cnts = np.unique(col_x, return_counts=True)
+    cnts = np.array(cnts)/len(col_x)
+    cnts = dict(zip(unique, cnts))
+    for key, val in cnts.items():
+        HDA += val*entropy(col_y[col_x == key])
     return (HD - HDA)/entropy(col_x), unique
     
 # For CART
@@ -43,9 +46,10 @@ def findMinGini(col_x, col_y):
     return min_gini, min_key
     
 class Node:
-    def __init__(self, key, val):
+    def __init__(self, key, val, depth):
         self.key = key
         self.val = val
+        self.depth = depth
         self.children = []
         
     def __str__(self, indent=0):
@@ -59,13 +63,13 @@ class Node:
             ans += ")"
         return ans
     
-    def addChild(self, key, val):
-        self.children.append(Node(key, val))
+    def addChild(self, key, val, depth=0):
+        self.children.append(Node(key, val, depth))
         return self.children[-1]
     
 class DecisionTree:
-    def __init__(self, epsilon=0):
-        self.root = Node("root", 0)
+    def __init__(self, epsilon=0, max_depth=-1): # here depth=-1 means no constrain
+        self.root = Node("root", 0, max_depth)
         self.epsilon = epsilon
         self.type = None
         
@@ -76,7 +80,7 @@ class DecisionTree:
         else:
             self.generate(x, y, self.root, type, detailed)
     
-    def generate(self, x, y, root, detailed):
+    def generate(self, x, y, root, type, detailed):
         # if empty
         if x.size == 0:
             return
@@ -85,12 +89,12 @@ class DecisionTree:
             root.addChild("leaf", y[0])
             return
         # if all the feature are the same, use the popular one
-        if np.all(x == x[0,:]):
+        if np.all(x == x[0,:]) or root.depth == 0:
             unique, cnts = np.unique(y, return_counts=True)
             cnts = dict(zip(unique, cnts))
             root.addChild("leaf", cnts[True] > cnts[False])
             return 
-        
+            
         max_gain = 0
         max_feature = -1
         max_feature_vals = None
@@ -108,7 +112,7 @@ class DecisionTree:
             return
         else:
             for val in max_feature_vals:
-                child = root.addChild(max_feature, val)
+                child = root.addChild(max_feature, val, root.depth-1)
                 self.generate(np.delete(x[x[:, max_feature]==val], max_feature, axis=-1), y[x[:, max_feature]==val], child, type, detailed)
     
     def CARTgenerate(self, x, y, root, detailed, min_gini_old=1):
@@ -120,12 +124,12 @@ class DecisionTree:
             root.addChild("leaf", y[0])
             return
         # if all the feature are the same, use the popular one
-        if np.all(x == x[0,:]):
+        if np.all(x == x[0,:]) or root.depth == 0:
             unique, cnts = np.unique(y, return_counts=True)
             cnts = dict(zip(unique, cnts))
             root.addChild("leaf", cnts[True] > cnts[False])
             return 
-        
+            
         min_gini = 1
         min_feature = None
         min_feature_val = None
@@ -143,9 +147,9 @@ class DecisionTree:
             root.addChild("leaf", cnts[True] > cnts[False])
             return
             
-        child_true = root.addChild((min_feature, min_feature_val,), True)
+        child_true = root.addChild((min_feature, min_feature_val,), True, root.depth-1)
         self.CARTgenerate(x[x[:, min_feature]==min_feature_val], y[x[:, min_feature]==min_feature_val], child_true, detailed, min_gini)
-        child_false = root.addChild((min_feature, min_feature_val,), False)
+        child_false = root.addChild((min_feature, min_feature_val,), False, root.depth-1)
         self.CARTgenerate(x[x[:, min_feature]!=min_feature_val], y[x[:, min_feature]!=min_feature_val], child_false, detailed, min_gini)
     
     # TODO: find nice regularization function
@@ -214,7 +218,7 @@ if __name__ == "__main__":
                   True,
                   False])
 
-    dt = DecisionTree()
-    dt.fit(x, y, type="CART", detailed=True)
+    dt = DecisionTree(max_depth=-1)
+    dt.fit(x, y, type="C4.5", detailed=True)
     print(dt.root)
     print(dt.predict(x))
