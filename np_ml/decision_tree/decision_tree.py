@@ -180,40 +180,41 @@ class DecisionTree:
             for test in x:
                 ans.append(self.predict(test))
             return ans
-    
-x = np.array([["young",    False, False, "ordinary"],
-              ["young",    False, False, "good"],
-              ["young",    True,  False, "good"],
-              ["young",    True,  True,  "ordinary"],
-              ["young",    False, False, "ordinary"],
-              ["mid-life", False, False, "ordinary"],
-              ["mid-life", False, False, "good"],
-              ["mid-life", True,  True,  "good"],
-              ["mid-life", False, True,  "very good"],
-              ["mid-life", False, True,  "very good"],
-              ["old",      False, True,  "very good"],
-              ["old",      False, True,  "good"],
-              ["old",      True,  False, "good"],
-              ["old",      True,  False, "very good"],
-              ["old",      False, False, "ordinary"]])
+            
+if __name__ == "__main__":
+    x = np.array([["young",    False, False, "ordinary"],
+                  ["young",    False, False, "good"],
+                  ["young",    True,  False, "good"],
+                  ["young",    True,  True,  "ordinary"],
+                  ["young",    False, False, "ordinary"],
+                  ["mid-life", False, False, "ordinary"],
+                  ["mid-life", False, False, "good"],
+                  ["mid-life", True,  True,  "good"],
+                  ["mid-life", False, True,  "very good"],
+                  ["mid-life", False, True,  "very good"],
+                  ["old",      False, True,  "very good"],
+                  ["old",      False, True,  "good"],
+                  ["old",      True,  False, "good"],
+                  ["old",      True,  False, "very good"],
+                  ["old",      False, False, "ordinary"]])
 
-y = np.array([False,
-              False,
-              True,
-              True,
-              False,
-              False,
-              False,
-              True,
-              True,
-              True,
-              True,
-              True,
-              True,
-              True,
-              False])
+    y = np.array([False,
+                  False,
+                  True,
+                  True,
+                  False,
+                  False,
+                  False,
+                  True,
+                  True,
+                  True,
+                  True,
+                  True,
+                  True,
+                  True,
+                  False])
 
-dt = DecisionTree()
-dt.fit(x, y, type="CART", detailed=True)
-print(dt.root)
-print(dt.predict(x))
+    dt = DecisionTree()
+    dt.fit(x, y, type="CART", detailed=True)
+    print(dt.root)
+    print(dt.predict(x))

@@ -39,24 +39,25 @@ class NaiveBayes:
             return ans
     def score(self, x, y):
         pass
-        
-# To make it easier, set S as 1, M as 2, L as 3
-x = np.array([[1, 0],
-              [1, 1],
-              [1, 1],
-              [1, 0],
-              [1, 0],
-              [2, 0],
-              [2, 1],
-              [2, 1],
-              [2, 2],
-              [2, 2],
-              [3, 2],
-              [3, 1],
-              [3, 1],
-              [3, 2],
-              [3, 2]])
-y = np.array([-1, -1, 1, 1, -1, -1, -1, 1, 1, 1, 1, 1, 1, 1, -1])
-nb = NaiveBayes()
-nb.fit(x, y)
-print(nb.predict(np.array([[2, 0]]), detailed=True))
+
+if __name__ == '__main__':
+    # To make it easier, set S as 1, M as 2, L as 3
+    x = np.array([[1, 0],
+                  [1, 1],
+                  [1, 1],
+                  [1, 0],
+                  [1, 0],
+                  [2, 0],
+                  [2, 1],
+                  [2, 1],
+                  [2, 2],
+                  [2, 2],
+                  [3, 2],
+                  [3, 1],
+                  [3, 1],
+                  [3, 2],
+                  [3, 2]])
+    y = np.array([-1, -1, 1, 1, -1, -1, -1, 1, 1, 1, 1, 1, 1, 1, -1])
+    nb = NaiveBayes()
+    nb.fit(x, y)
+    print(nb.predict(np.array([[2, 0]]), detailed=True))

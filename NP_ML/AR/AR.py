@@ -69,10 +69,12 @@ class AR:
                 X[0, 1:-1] = X[0, 2:]
                 X[0, -1] = pred[-1]
             return np.array(pred)
-data = np.genfromtxt("./data/dgnp82.dat")
 
-ar3 = AR(3)
-ar3.fit(data)
-print(ar3.phi)
-print(ar3.sigma_a*ar3.sigma_a)
-print(ar3.predict(data, step=8))
+if __name__ == '__main__':
+    data = np.genfromtxt(r"..\..\data\dgnp82.dat")
+
+    ar3 = AR(3)
+    ar3.fit(data)
+    print(ar3.phi)
+    print(ar3.sigma_a*ar3.sigma_a)
+    print(ar3.predict(data, step=8))

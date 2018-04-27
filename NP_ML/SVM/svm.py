@@ -99,28 +99,29 @@ class SVM:
                 ans.append(self.predict(x[i, :]))
             return ans
         
-# solution should be 0.5x + 0.5y - 2 = 0
-x = np.array([[1., 1.], 
-              [4., 3.],
-              [3., 3.]], np.float32)
-              
-y = np.array([-1., 1., 1.], np.float32)
+if __name__ == '__main__':
+    # solution should be 0.5x + 0.5y - 2 = 0
+    x = np.array([[1., 1.], 
+                  [4., 3.],
+                  [3., 3.]], np.float32)
+                  
+    y = np.array([-1., 1., 1.], np.float32)
 
-svm = SVM()
-svm.fit(x, y, detailed=True)
-print(svm.predict(x))
+    svm = SVM()
+    svm.fit(x, y, detailed=True)
+    print(svm.predict(x))
 
-# more complex kernel
-x = np.array([[0, 0], 
-              [0, 1],
-              [1, 1],
-              [1, 0],
-              [0, 0.5],
-              [0.5, 0],
-              [0.5, 1],
-              [1, 0.5]], np.float32)
-y = np.array([-1, -1, -1, -1, 1, 1, 1, 1], np.float32)
-gaussian = lambda x1, x2: np.exp(-LA.norm(x1-x2)/2)
-svm = SVM()
-svm.fit(x, y, kernel=gaussian, detailed=True)
-print(svm.predict(x))
+    # more complex kernel
+    x = np.array([[0, 0], 
+                  [0, 1],
+                  [1, 1],
+                  [1, 0],
+                  [0, 0.5],
+                  [0.5, 0],
+                  [0.5, 1],
+                  [1, 0.5]], np.float32)
+    y = np.array([-1, -1, -1, -1, 1, 1, 1, 1], np.float32)
+    gaussian = lambda x1, x2: np.exp(-LA.norm(x1-x2)/2)
+    svm = SVM()
+    svm.fit(x, y, kernel=gaussian, detailed=True)
+    print(svm.predict(x))

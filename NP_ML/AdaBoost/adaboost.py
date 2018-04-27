@@ -78,10 +78,11 @@ class AdaBoost:
     def score(self, x, y):
         return 1 - np.sum(self.predict(x) == y)/len(y)
         
-tc = TrivialClassification()
-x = np.array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
-y = np.array([1, 1, 1, -1, -1, -1, 1, 1, 1, -1])
+if __name__ == '__main__':
+    tc = TrivialClassification()
+    x = np.array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+    y = np.array([1, 1, 1, -1, -1, -1, 1, 1, 1, -1])
 
-adb = AdaBoost(TrivialClassification)
-adb.fit(x, y, detailed=True)
-print(adb.predict(x))
+    adb = AdaBoost(TrivialClassification)
+    adb.fit(x, y, detailed=True)
+    print(adb.predict(x))

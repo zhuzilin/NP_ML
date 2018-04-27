@@ -29,20 +29,21 @@ class RandomForest:
     def evaluate(self, x, y):
         y_pred = self.predict(x)
         return np.sum(np.array(y) == np.array(y_pred)) / len(y)
-        
-with open('tic_tac_toe.csv', newline='') as csvfile:
-    data = np.array(list(csv.reader(csvfile)))
-# data = np.genfromtxt('tic_tac_toe.csv', delimiter=',', dtype=None)
-np.random.shuffle(data)
-train = data[:int(data.shape[0]*0.8), :]
-test = data[int(data.shape[0]*0.8):, :]
-train_x = train[:, :-1]
-train_y = train[:, -1]
-train_y = (train_y == "positive")
-test_x = test[:, :-1]
-test_y = test[:, -1]
-test_y = (test_y == "positive")
-              
-rf = RandomForest(2)
-rf.fit(train_x[:, :], train_y, detailed=False)
-print(rf.evaluate(test_x[:, :], test_y))
+
+if __name__ == '__main__':
+    with open(r'..\..\data\tic_tac_toe.csv', newline='') as csvfile:
+        data = np.array(list(csv.reader(csvfile)))
+    # data = np.genfromtxt('tic_tac_toe.csv', delimiter=',', dtype=None)
+    np.random.shuffle(data)
+    train = data[:int(data.shape[0]*0.8), :]
+    test = data[int(data.shape[0]*0.8):, :]
+    train_x = train[:, :-1]
+    train_y = train[:, -1]
+    train_y = (train_y == "positive")
+    test_x = test[:, :-1]
+    test_y = test[:, -1]
+    test_y = (test_y == "positive")
+                  
+    rf = RandomForest(2)
+    rf.fit(train_x[:, :], train_y, detailed=False)
+    print(rf.evaluate(test_x[:, :], test_y))

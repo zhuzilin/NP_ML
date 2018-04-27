@@ -34,30 +34,31 @@ class HMM:
         I = [int(i) for i in I]
         return np.max(delta), I[::-1]
         
-# calculate probability
-A = np.array([[0.5, 0.2, 0.3],
-              [0.3, 0.5, 0.2],
-              [0.2, 0.3, 0.5]])
-B = np.array([[0.5, 0.5],
-              [0.4, 0.6],
-              [0.7, 0.3]])
-pi = np.array([0.2, 0.4, 0.4])
+if __name__ == '__main__':
+    # calculate probability
+    A = np.array([[0.5, 0.2, 0.3],
+                  [0.3, 0.5, 0.2],
+                  [0.2, 0.3, 0.5]])
+    B = np.array([[0.5, 0.5],
+                  [0.4, 0.6],
+                  [0.7, 0.3]])
+    pi = np.array([0.2, 0.4, 0.4])
 
-hmm = HMM(A, B, pi)
+    hmm = HMM(A, B, pi)
 
-O = np.array([0, 1, 0])
+    O = np.array([0, 1, 0])
 
-print("Forward")
-print(hmm.forward(O))
-print("Backward")
-print(hmm.backward(O))
+    print("Forward")
+    print(hmm.forward(O))
+    print("Backward")
+    print(hmm.backward(O))
 
-# learning
-# We will not implement the supervised version, since it need huge amount of data
-# Baum-Welch algorithm, which is an application of EM
+    # learning
+    # We will not implement the supervised version, since it need huge amount of data
+    # Baum-Welch algorithm, which is an application of EM
 
-# predict
-# Viterbi
-print("Viterbi: ")
-max_prob, path = hmm.Viterbi(O)
-print("Maximum probability is:", max_prob, "path is", path)
+    # predict
+    # Viterbi
+    print("Viterbi: ")
+    max_prob, path = hmm.Viterbi(O)
+    print("Maximum probability is:", max_prob, " and path is", path)

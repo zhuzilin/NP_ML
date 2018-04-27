@@ -93,31 +93,31 @@ class LDA:
         for d in range(data.ndoc):
             self.theta[d, :] = (self.n_d_k[d, :] + self.alpha)/(self.n_d[d] + self.alpha)
         
-        
-print("data1")
-data = [["apple", "orange", "banana"], 
-        ["apple", "orange"],
-        ["orange", "banana"],
-        ["cat", "dog"], 
-        ["dog", "tiger"], 
-        ["tiger", "cat"]]
+if __name__ == '__main__':
+    print("data1")
+    data = [["apple", "orange", "banana"], 
+            ["apple", "orange"],
+            ["orange", "banana"],
+            ["cat", "dog"], 
+            ["dog", "tiger"], 
+            ["tiger", "cat"]]
 
-docs = Documents(data=data)
-lda = LDA()
-lda.fit(docs)
-print(docs.reverse_dict)
-print(lda.theta)
-print(lda.phi)
-print("")
+    docs = Documents(data=data)
+    lda = LDA()
+    lda.fit(docs)
+    print(docs.reverse_dict)
+    print(lda.theta)
+    print(lda.phi)
+    print("")
 
-print("data2")
-data = [[1, 2, 3, 1, 2], 
-        [1, 4, 5, 4, 4],
-        [1, 4, 2, 5, 5, 4],
-        [1, 3, 3, 2, 3],
-        [1, 1, 3, 2, 2]]
-docs = Documents(data=data)
-lda.fit(docs)
-print(docs.reverse_dict)
-print(lda.theta)
-print(lda.phi)
+    print("data2")
+    data = [[1, 2, 3, 1, 2], 
+            [1, 4, 5, 4, 4],
+            [1, 4, 2, 5, 5, 4],
+            [1, 3, 3, 2, 3],
+            [1, 1, 3, 2, 2]]
+    docs = Documents(data=data)
+    lda.fit(docs)
+    print(docs.reverse_dict)
+    print(lda.theta)
+    print(lda.phi)
