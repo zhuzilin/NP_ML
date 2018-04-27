@@ -33,7 +33,7 @@ And a tool to help you understand the root of all the classical algorithms inste
   $ cd visual_examples
   $ python perceptron_primary.py
 ```
-![perceptron.png](https://raw.githubusercontent.com/zhuzilin/NP_ML/master/visual_examples/figures/perceptron.png "Perceptron Result")
+![perceptron.png](https://raw.githubusercontent.com/zhuzilin/NP_ML/master/examples/figures/perceptron.png "Perceptron Result")
 
 - KNN
 - Naive Bayes
