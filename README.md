@@ -38,10 +38,12 @@ For perceptron, the example used the UCI/iris dataset. Since the basic perceptro
 <p align="center">
     Figure: versicolor and virginica. Hard to distinguish... Right?
 </p>
+
 ```
 $ cd examples
 $ python perceptron_primary.py
 ```
+
 <p align="center">
     <img src="https://raw.githubusercontent.com/zhuzilin/NP_ML/master/examples/figures/perceptron.png" width="640">
 </p>
