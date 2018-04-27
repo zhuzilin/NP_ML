@@ -29,15 +29,61 @@ And a tool to help you understand the root of all the classical algorithms inste
 ## Algorithm List<a name="algorithm-list"></a>
 ### Classical ML<a name="classical-ml"></a>
 - Perceptron
+
+For perceptron, the example used the UCI/iris dataset. Since the basic perceptron is a binary classifier, the example used the data for versicolor and virginica.
+<p align="center">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Iris_versicolor_3.jpg/1024px-Iris_versicolor_3.jpg" height="200">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Iris_virginica.jpg/1024px-Iris_virginica.jpg" height="200">
+</p>
+<p align="center">
+    Figure: versicolor and virginica. Hard to distinguish... Right?
+</p>
 ```
-  $ cd visual_examples
-  $ python perceptron_primary.py
+$ cd examples
+$ python perceptron_primary.py
 ```
-![perceptron.png](https://raw.githubusercontent.com/zhuzilin/NP_ML/master/examples/figures/perceptron.png "Perceptron Result")
+<p align="center">
+    <img src="https://raw.githubusercontent.com/zhuzilin/NP_ML/master/examples/figures/perceptron.png" width="640">
+</p>
+<p align="center">
+    Figure: Perceptron result on the Iris dataset.
+</p>
 
 - KNN
 - Naive Bayes
 - Decision Tree
+
+For decision tree, the example used the UCI/tic=tac-toe dataset. The input is the status of 9 block and the result is whether x win.
+<p align="center">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Tic_tac_toe.svg/2000px-Tic_tac_toe.svg.png" width="200">
+</p>
+<p align="center">
+    Figure: tic tac toe.
+</p>
+
+```
+$ cd examples
+$ python decision_tree.py
+```
+Here, we use ID3 and CART to generate a one layer tree.
+
+For the ID3, we have:
+```
+root
+├── 4 == b : True
+├── 4 == o : False
+└── 4 == x : True
+accuracy = 0.385
+```
+And for CART, we have: 
+```
+root
+├── 4 == o : False
+└── 4 != o : True
+accuracy = 0.718
+```
+In both of them, feature_4 is the status of the center block. We could find out that **the center block matters!!!** And in ID3, the tree has to give a result for 'b', which causes the low accuracy.
+
 - Random Forest
 - Logistic Regression
 - SVM
