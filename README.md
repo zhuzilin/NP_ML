@@ -8,7 +8,7 @@ And a tool to help you understand the root of all the classical algorithms inste
 - [Introduction](#introduction)
 - [Directory](#directory)
 - [Algorithm list](#algorithm-list)
-  * Classical ML(#classical-ml)
+  * [Classical ML](#classical-ml)
     + Perceptron
     + KNN
     + Naive Bayes
