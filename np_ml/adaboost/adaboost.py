@@ -1,7 +1,7 @@
 import numpy as np
-
 # x > v or x < v
 # y = 1 or -1
+
 class TrivialClassification:
     def __init__(self):
         self.sign = None
@@ -55,9 +55,12 @@ class AdaBoost:
         return 0.5*np.log((1-e)/e)
         
     def fit(self, x, y, detailed=False):
+        """if use detailed, need weak learner has __str__ property"""
         w = np.ones(len(y)) / len(y)
         score = 1
+        epoch = 0
         while score > self.epsilon:
+            epoch += 1
             wl = self.weak_learner_class()
             wl.fit(x, y, w)
             alpha = AdaBoost.calcAlpha(wl.score(x, y, w))
@@ -67,8 +70,12 @@ class AdaBoost:
             w = w/np.sum(w)
             score = self.score(x, y)
             if detailed:
-                print("Weak learner:", wl, ", alpha:", alpha)
-                print(score)
+                print("Epoch: {}".format(epoch))
+                print("Weak learner: {}".format(wl))
+                print("alpha: {}".format(alpha))
+                print("accuracy: {}".format(1-score))
+                print()
+                
     def predict(self, x):
         ans = np.zeros(x.shape[0])
         for i in range(len(self.alphas)):
@@ -77,12 +84,3 @@ class AdaBoost:
         
     def score(self, x, y):
         return 1 - np.sum(self.predict(x) == y)/len(y)
-        
-if __name__ == '__main__':
-    tc = TrivialClassification()
-    x = np.array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
-    y = np.array([1, 1, 1, -1, -1, -1, 1, 1, 1, -1])
-
-    adb = AdaBoost(TrivialClassification)
-    adb.fit(x, y, detailed=True)
-    print(adb.predict(x))
