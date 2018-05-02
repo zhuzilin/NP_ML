@@ -3,29 +3,51 @@ import numpy as np
 class NaiveBayes:
     def __init__(self, laplace=1):
         self.laplace = 1
+        self.data = None
+        self.cnts = None
+        self.total = None
         
     def fit(self, x, y, detailed=False):
-        self.data = np.concatenate((x, y[..., None]), axis=-1)
+        self.x = x
+        self.y = y
         
-    def predict(self, x, ys=[-1, 1], detailed=False):
-        priors = {}
-        for y in ys:
-            priors[y] = self.data[self.data[:, -1] == y].shape[0]
+    def predict(self, x, ys=[-1, 1], priors=None, detailed=False):
+        if priors is None:  # if no prior distribution is given, get it from data
+            priors = {}
+            for y in ys:
+                priors[y] = len(self.y == y)
+        # initialize the counting dictionary
+        # here we assume the order in x in insignificance.
+        if self.cnts is None:
+            self.cnts = {}
+            self.total = {}
+            for y in ys:
+                self.cnts[y] = {}
+                self.total[y] = 0
+            for i in range(len(self.y)):
+                assert self.y[i] in ys, "ys is wrong!"
+                tmp_set = set()
+                for element in self.x[i]:
+                    if element not in tmp_set:
+                        tmp_set.add(element)
+                        if element not in self.cnts[self.y[i]]:
+                            self.cnts[self.y[i]][element] = 1
+                        else:
+                            self.cnts[self.y[i]][element] += 1
+                        self.total[y] += 1
+                    
         if x.ndim == 1:
             max_posterior = 0
             max_y = None
             for y in ys:
-                data_y = self.data[self.data[:, -1] == y]
                 posterior = 1
-                for i in range(len(x)):
-                    unique, cnts = np.unique(data_y[:, i], return_counts=True)
-                    cnts = dict(zip(unique, cnts))
-                    if x[i] in cnts:
-                        posterior *= (cnts[x[i]]+self.laplace) / (priors[y]+len(cnts)*self.laplace)
+                for element in x:
+                    if element in self.cnts[y]:
+                        posterior *= (self.cnts[y][element]+self.laplace) / (priors[y]+len(self.cnts[y])*self.laplace)
                     else:
                         posterior = 0
                         break
-                posterior *= (priors[y]+self.laplace) / (self.data.shape[0]+len(priors)*self.laplace)
+                posterior *= (priors[y]+self.laplace) / (len(self.y)+len(priors)*self.laplace)
                 if detailed == True:
                     print("x:", x, "y:", y, "posterior:", posterior)
                 if posterior > max_posterior:
@@ -39,25 +61,4 @@ class NaiveBayes:
             return ans
     def score(self, x, y):
         pass
-
-if __name__ == '__main__':
-    # To make it easier, set S as 1, M as 2, L as 3
-    x = np.array([[1, 0],
-                  [1, 1],
-                  [1, 1],
-                  [1, 0],
-                  [1, 0],
-                  [2, 0],
-                  [2, 1],
-                  [2, 1],
-                  [2, 2],
-                  [2, 2],
-                  [3, 2],
-                  [3, 1],
-                  [3, 1],
-                  [3, 2],
-                  [3, 2]])
-    y = np.array([-1, -1, 1, 1, -1, -1, -1, 1, 1, 1, 1, 1, 1, 1, -1])
-    nb = NaiveBayes()
-    nb.fit(x, y)
-    print(nb.predict(np.array([[2, 0]]), detailed=True))
+        
