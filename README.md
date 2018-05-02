@@ -66,6 +66,7 @@ $ python knn.py
 <p align="center">
     KNN result on the Iris dataset.
 </p>
+
 - Naive Bayes
 - Decision Tree
 
