@@ -10,7 +10,7 @@ And a tool to help you understand the root of all the classical algorithms inste
 - [Algorithm list](#algorithm-list)
   * [Classical ML](#classical-ml)
     + Perceptron
-    + KNN
+    + K Nearest Neightbor (KNN)
     + Naive Bayes
     + Decision Tree
     + Random Forest
@@ -24,13 +24,13 @@ And a tool to help you understand the root of all the classical algorithms inste
     + AR
 - [Usage](#usage)
   * Installation
-  * Direct Usage
+  * Examples for *Statistical Learning Method*(《统计学习方法》)
 - [Reference](#reference)
 ## Algorithm List<a name="algorithm-list"></a>
 ### Classical ML<a name="classical-ml"></a>
 - Perceptron
 
-For perceptron, the example used the UCI/iris dataset. Since the basic perceptron is a binary classifier, the example used the data for versicolor and virginica.
+For perceptron, the example used the UCI/iris dataset. Since the basic perceptron is a binary classifier, the example used the data for versicolor and virginica. Also, since the iris dataset is not linear separable, the result may varies much.
 <p align="center">
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Iris_versicolor_3.jpg/1024px-Iris_versicolor_3.jpg" height="200">
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Iris_virginica.jpg/1024px-Iris_virginica.jpg" height="200">
@@ -48,10 +48,25 @@ $ python perceptron_primary.py
     <img src="https://raw.githubusercontent.com/zhuzilin/NP_ML/master/examples/figures/perceptron.png" width="640">
 </p>
 <p align="center">
-    Figure: Perceptron result on the Iris dataset.
+    Perceptron result on the Iris dataset.
 </p>
 
-- KNN
+- K Nearest Neightbor (KNN)
+
+For KNN, the example also used the UCI/iris dataset.
+
+```
+$ cd examples
+$ python knn.py
+```
+
+<p align="center">
+    <img src="https://raw.githubusercontent.com/zhuzilin/NP_ML/master/examples/figures/knn.png" width="640">
+</p>
+<p align="center">
+    KNN result on the Iris dataset.
+</p>
+
 - Naive Bayes
 - Decision Tree
 
@@ -106,15 +121,12 @@ If you want to use the visual example, please install the package by:
   $ python setup.py install
 ```
 
-- Direct Usage
+- Examples for *Statistical Learning Method*(《统计学习方法》)
 
-If you just what to try each model, there is a naive example in each model file. So you can just run the model_name.py file in the np_ml/model_name/ file.
-
-For example:
+For example: 
 
 ```
-  $ git clone https://github.com/zhuzilin/NP_ML
-  $ cd NP_ML/np_ml/adaboost
+  $ cd example/StatisticalLearningMethod
   $ python adaboost.py
 ```
 ## Reference<a name="reference"></a>
