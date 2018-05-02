@@ -13,24 +13,20 @@ class KNN:
     def fit(self, x, y):
         self.train_x = x
         self.train_y = y
-        self.heap = []
         
     def predict(self, x, k=5, similarity="euclidean", detailed=False):
+        heap = []
         if x.ndim == 1:
             if similarity == "euclidean":
                 for i in range(len(self.train_y)):
-                    heappush(self.heap, (-LA.norm(self.train_x[i, :]-x), list(self.train_x[i, :]), self.train_y[i]))
-                    if len(self.heap) > k:
-                        heappop(self.heap)
+                    heappush(heap, (-LA.norm(self.train_x[i, :]-x), list(self.train_x[i, :]), self.train_y[i]))
+                    if len(heap) > k:
+                        heappop(heap)
             if detailed:
-                print("For",x,", the",k,"nearest neighbor are:")
-                for n in self.heap[::-1]:
-                    print("x:", n[1], ", y: ", n[2])
-            [_, _, votes] = zip(*self.heap)
-            self.heap = []
-            if votes.count(1) > votes.count(-1):
-                return 1
-            else:
-                return -1
+                print("For {}, the {} nearest neighbor are:".format(x, k))
+                for n in heap[::-1]:
+                    print("x: {}, y: {}".format(n[1], n[2]))
+            [_, _, votes] = zip(*heap)
+            return max(set(votes), key=votes.count)
         else:
-            return [self.predict(x[i, :], detailed=detailed) for i in range(x.shape[0])]
+            return np.array([self.predict(x[i, :], detailed=detailed) for i in range(x.shape[0])])

@@ -23,7 +23,7 @@ def plot_boundary(model, x, y, **kwargs):
     if 'h' in kwargs:
         h = kwargs['h']
     else:
-        h = 0.02
+        h = 0.05
     x_min, x_max = x[:, 0].min() - 1, x[:, 0].max() + 1
     y_min, y_max = x[:, 1].min() - 1, x[:, 1].max() + 1
     x_grid, y_grid = np.meshgrid(np.arange(x_min, x_max, h),
