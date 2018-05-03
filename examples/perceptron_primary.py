@@ -6,7 +6,6 @@ from np_ml import Perceptron, utils
 if __name__ == '__main__':
     with open(r'..\data\iris.csv', newline='') as csvfile:
         data = np.array(list(csv.reader(csvfile)))
-
     # use binary classifier
     data = data[data[:, 4] != 'Iris-setosa']
     np.random.shuffle(data)
