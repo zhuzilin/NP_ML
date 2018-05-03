@@ -31,5 +31,5 @@ if __name__ == '__main__':
     nb = NaiveBayes()
     nb.fit(x, y)
     
-    print("x_pred: {}".format(np.array([[2, 0]])))
-    print("y_pred: {}".format(nb.predict(np.array([[2, 0]]), detailed=True)))
+    print("x_pred: {}".format([2, 0]))
+    print("y_pred: {}".format(nb.predict([2, 0], ys=[1, -1], detailed=True)))
