@@ -68,6 +68,39 @@ $ python knn.py
 </p>
 
 - Naive Bayes
+
+For naive bayes, the example used the [UCI/SMS Spam Collection Dataset](https://www.kaggle.com/uciml/sms-spam-collection-dataset) to do spam filtering.
+
+```
+$ cd examples
+$ python naive_bayes.py
+```
+
+```
+preprocessing data...
+100%|############################################################################| 5572/5572 [00:00<00:00, 8656.12it/s]
+finish preprocessing data.
+
+100%|###########################################################################| 1115/1115 [00:00<00:00, 55528.96it/s]
+accuracy:  0.9757847533632287
+```
+
+We got 97.6% accuracy! That's nice!
+
+And we try two example, a typical ham and a typical spam. The result show as following.
+
+```
+example ham:
+Po de :-):):-):-):-). No need job aha.
+predict result:
+ham
+
+example spam:
+u r a winner U ave been specially selected 2 receive 澹1000 cash or a 4* holiday (flights inc) speak to a live operator 2 claim 0871277810710p/min (18 )
+predict result:
+spam
+```
+
 - Decision Tree
 
 For decision tree, the example used the UCI/tic-tac-toe dataset. The input is the status of 9 block and the result is whether x win.
