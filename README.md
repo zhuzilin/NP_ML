@@ -76,6 +76,8 @@ $ cd examples
 $ python naive_bayes.py
 ```
 
+For this example only, for tokenizing, nltk is used. And the result is listed below:
+
 ```
 preprocessing data...
 100%|############################################################################| 5572/5572 [00:00<00:00, 8656.12it/s]
