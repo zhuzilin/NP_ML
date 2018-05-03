@@ -30,7 +30,7 @@ And a tool to help you understand the root of all the classical algorithms inste
 ### Classical ML<a name="classical-ml"></a>
 - Perceptron
 
-For perceptron, the example used the UCI/iris dataset. Since the basic perceptron is a binary classifier, the example used the data for versicolor and virginica. Also, since the iris dataset is not linear separable, the result may vary much.
+For perceptron, the example used the [UCI/iris dataset](https://archive.ics.uci.edu/ml/datasets/iris). Since the basic perceptron is a binary classifier, the example used the data for versicolor and virginica. Also, since the iris dataset is not linear separable, the result may vary much.
 <p align="center">
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Iris_versicolor_3.jpg/1024px-Iris_versicolor_3.jpg" height="200">
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Iris_virginica.jpg/1024px-Iris_virginica.jpg" height="200">
