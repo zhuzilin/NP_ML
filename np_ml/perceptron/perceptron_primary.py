@@ -38,12 +38,3 @@ class Perceptron:
             return 0
         dis = np.abs(np.sum(self.W*x, axis=-1)+self.b)*y
         return -np.sum(dis*(dis<0))*1/LA.norm(self.W)
-        
-if __name__ == '__main__':
-    p = Perceptron()
-    p.fit(np.array([[3, 3], 
-                    [4, 3],
-                    [1, 1]]), np.array([1, 1, -1]), detailed=True)
-    print(p.predict(np.array([[3, 3], 
-                              [4, 3],
-                              [1, 1]])))
