@@ -9,3 +9,4 @@ from .naive_bayes import *
 from .perceptron import *
 from .random_forest import *
 from .svm import *
+from .kmeans import *
