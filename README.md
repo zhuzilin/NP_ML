@@ -18,6 +18,7 @@ And a tool to help you understand the root of all the classical algorithms inste
     + SVM
     + AdaBoost
     + HMM
+    + KMeans
   * [NLP](#nlp)
     + LDA
   * [Time Series Analysis](#time-series-analysis)
@@ -110,7 +111,7 @@ For decision tree, the example used the UCI/tic-tac-toe dataset. The input is th
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Tic_tac_toe.svg/2000px-Tic_tac_toe.svg.png" width="200">
 </p>
 <p align="center">
-    Figure: tic tac toe.
+    tic tac toe.
 </p>
 
 ```
@@ -141,6 +142,22 @@ In both of them, feature_4 is the status of the center block. We could find out 
 - SVM
 - AdaBoost
 - HMM
+- Kmeans
+
+For kmeans, we use the [make_blob()](http://scikit-learn.org/stable/modules/generated/sklearn.datasets.make_blobs.html#sklearn.datasets.make_blobs) function in sklearn to produce toy dataset.
+
+```
+$ cd examples
+$ python kmeans.py
+```
+
+<p align="center">
+    <img src="https://raw.githubusercontent.com/zhuzilin/NP_ML/master/examples/figures/kmeans.png" width="640">
+</p>
+<p align="center">
+    Kmeans result on the blob dataset.
+</p>
+
 ### NLP<a name="nlp"></a>
 - LDA
 ### Time Series Analysis<a name="time-series-analysis"></a>
