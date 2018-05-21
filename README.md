@@ -8,17 +8,19 @@ And a tool to help you understand the root of all the classical algorithms inste
 - [Introduction](#introduction)
 - [Directory](#directory)
 - [Algorithm list](#algorithm-list)
-  * [Classical ML](#classical-ml)
+  * [Classify](#classify)
     + Perceptron
     + K Nearest Neightbor (KNN)
     + Naive Bayes
     + Decision Tree
     + Random Forest
-    + Logistic Regression
     + SVM
     + AdaBoost
     + HMM
+  * [Cluster](#cluster)
     + KMeans
+  * [Manifold Learning](#manifold-learning)
+    + Locally-linear-embedding (LLE)
   * [NLP](#nlp)
     + LDA
   * [Time Series Analysis](#time-series-analysis)
@@ -28,7 +30,7 @@ And a tool to help you understand the root of all the classical algorithms inste
   * Examples for *Statistical Learning Method*(《统计学习方法》)
 - [Reference](#reference)
 ## Algorithm List<a name="algorithm-list"></a>
-### Classical ML<a name="classical-ml"></a>
+### Classify<a name="classify"></a>
 - Perceptron
 
 For perceptron, the example used the [UCI/iris dataset](https://archive.ics.uci.edu/ml/datasets/iris). Since the basic perceptron is a binary classifier, the example used the data for versicolor and virginica. Also, since the iris dataset is not linear separable, the result may vary much.
@@ -142,6 +144,8 @@ In both of them, feature_4 is the status of the center block. We could find out 
 - SVM
 - AdaBoost
 - HMM
+
+### Cluster<a name="cluster"></a>
 - Kmeans
 
 For kmeans, we use the [make_blob()](http://scikit-learn.org/stable/modules/generated/sklearn.datasets.make_blobs.html#sklearn.datasets.make_blobs) function in sklearn to produce toy dataset.
@@ -156,6 +160,30 @@ $ python kmeans.py
 </p>
 <p align="center">
     Kmeans result on the blob dataset.
+</p>
+
+### Manifold Learning<a name="manifold-learning"></a>
+In manifold learning, we all use the simple curve-s data.
+
+<p align="center">
+    <img src="https://raw.githubusercontent.com/zhuzilin/NP_ML/master/examples/figures/curve_s.png" width="640">
+</p>
+<p align="center">
+    Curve S data.
+</p>
+
+- LLE
+
+```
+$ cd examples
+$ python lle.py
+```
+
+<p align="center">
+    <img src="https://raw.githubusercontent.com/zhuzilin/NP_ML/master/examples/figures/lle.png" width="640">
+</p>
+<p align="center">
+    LLE visualization.
 </p>
 
 ### NLP<a name="nlp"></a>
