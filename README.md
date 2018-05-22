@@ -1,8 +1,8 @@
 # NP_ML
 ## Introduction
-Classical machine learning algorithms with pure python numpy.
+Classical machine learning algorithms implemented with pure numpy.
 
-And a tool to help you understand the root of all the classical algorithms instead of blindly using tools like sklearn or tensorflow.
+The repo to help you understand the ml algorithms instead of blindly using APIs.
 
 ## Directory<a name="directory"></a>
 - [Introduction](#introduction)
@@ -79,7 +79,7 @@ accuracy:  0.9757847533632287
 
 We got 97.6% accuracy! That's nice!
 
-And we try two example, a typical ham and a typical spam. The result show as following.
+And we try two examples, a typical ham and a typical spam. The result show as following.
 
 ```
 example ham:
