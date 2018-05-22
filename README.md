@@ -20,6 +20,7 @@ And a tool to help you understand the root of all the classical algorithms inste
   * [Cluster](#cluster)
     + KMeans
   * [Manifold Learning](#manifold-learning)
+    + PCA
     + Locally-linear-embedding (LLE)
   * [NLP](#nlp)
     + LDA
@@ -170,6 +171,20 @@ In manifold learning, we all use the simple curve-s data.
 </p>
 <p align="center">
     Curve S data.
+</p>
+
+- PCA
+
+```
+$ cd examples
+$ python pca.py
+```
+
+<p align="center">
+    <img src="https://raw.githubusercontent.com/zhuzilin/NP_ML/master/examples/figures/pca.png" width="640">
+</p>
+<p align="center">
+    PCA visualization.
 </p>
 
 - LLE
