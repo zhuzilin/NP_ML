@@ -8,27 +8,28 @@ And a tool to help you understand the root of all the classical algorithms inste
 - [Introduction](#introduction)
 - [Directory](#directory)
 - [Algorithm list](#algorithm-list)
-  * [Classify](#classify)
-    + Perceptron
-    + K Nearest Neightbor (KNN)
-    + Naive Bayes
-    + Decision Tree
-    + Random Forest
-    + SVM
-    + AdaBoost
-    + HMM
-  * [Cluster](#cluster)
-    + KMeans
-  * [Manifold Learning](#manifold-learning)
-    + PCA
-    + Locally-linear-embedding (LLE)
-  * [NLP](#nlp)
-    + LDA
-  * [Time Series Analysis](#time-series-analysis)
-    + AR
+  - [Classify](#classify)
+    - Perceptron
+    - K Nearest Neightbor (KNN)
+    - Naive Bayes
+    - Decision Tree
+    - Random Forest
+    - SVM
+    - AdaBoost
+    - HMM
+  - [Cluster](#cluster)
+    - KMeans
+    - Affinity Propagation
+  - [Manifold Learning](#manifold-learning)
+    - PCA
+    - Locally-linear-embedding (LLE)
+  - [NLP](#nlp)
+    - LDA
+  - [Time Series Analysis](#time-series-analysis)
+    - AR
 - [Usage](#usage)
-  * Installation
-  * Examples for *Statistical Learning Method*(《统计学习方法》)
+  - Installation
+  - Examples for *Statistical Learning Method*(《统计学习方法》)
 - [Reference](#reference)
 ## Algorithm List<a name="algorithm-list"></a>
 ### Classify<a name="classify"></a>
@@ -43,13 +44,8 @@ For perceptron, the example used the [UCI/iris dataset](https://archive.ics.uci.
     Figure: versicolor and virginica. Hard to distinguish... Right?
 </p>
 
-```
-$ cd examples
-$ python perceptron_primary.py
-```
-
 <p align="center">
-    <img src="https://raw.githubusercontent.com/zhuzilin/NP_ML/master/examples/figures/perceptron.png" width="640">
+    <img src="https://raw.githubusercontent.com/zhuzilin/NP_ML/master/examples/figures/perceptron.png" width="480">
 </p>
 <p align="center">
     Perceptron result on the Iris dataset.
@@ -59,13 +55,8 @@ $ python perceptron_primary.py
 
 For KNN, the example also used the UCI/iris dataset.
 
-```
-$ cd examples
-$ python knn.py
-```
-
 <p align="center">
-    <img src="https://raw.githubusercontent.com/zhuzilin/NP_ML/master/examples/figures/knn.png" width="640">
+    <img src="https://raw.githubusercontent.com/zhuzilin/NP_ML/master/examples/figures/knn.png" width="480">
 </p>
 <p align="center">
     KNN result on the Iris dataset.
@@ -75,19 +66,14 @@ $ python knn.py
 
 For naive bayes, the example used the [UCI/SMS Spam Collection Dataset](https://www.kaggle.com/uciml/sms-spam-collection-dataset) to do spam filtering.
 
-```
-$ cd examples
-$ python naive_bayes.py
-```
-
 For this example only, for tokenizing, nltk is used. And the result is listed below:
 
 ```
 preprocessing data...
-100%|############################################################################| 5572/5572 [00:00<00:00, 8656.12it/s]
+100%|#####################################################################| 5572/5572 [00:00<00:00, 8656.12it/s]
 finish preprocessing data.
 
-100%|###########################################################################| 1115/1115 [00:00<00:00, 55528.96it/s]
+100%|#####################################################################| 1115/1115 [00:00<00:00, 55528.96it/s]
 accuracy:  0.9757847533632287
 ```
 
@@ -102,7 +88,8 @@ predict result:
 ham
 
 example spam:
-u r a winner U ave been specially selected 2 receive 澹1000 cash or a 4* holiday (flights inc) speak to a live operator 2 claim 0871277810710p/min (18 )
+u r a winner U ave been specially selected 2 receive 澹1000 cash or a 4* holiday (flights inc) speak to a 
+live operator 2 claim 0871277810710p/min (18 )
 predict result:
 spam
 ```
@@ -117,10 +104,6 @@ For decision tree, the example used the UCI/tic-tac-toe dataset. The input is th
     tic tac toe.
 </p>
 
-```
-$ cd examples
-$ python decision_tree.py
-```
 Here, we use ID3 and CART to generate a one layer tree.
 
 For the ID3, we have:
@@ -141,7 +124,6 @@ accuracy = 0.718
 In both of them, feature_4 is the status of the center block. We could find out that **the center block matters!!!** And in ID3, the tree has to give a result for 'b', which causes the low accuracy.
 
 - Random Forest
-- Logistic Regression
 - SVM
 - AdaBoost
 - HMM
@@ -151,20 +133,26 @@ In both of them, feature_4 is the status of the center block. We could find out 
 
 For kmeans, we use the [make_blob()](http://scikit-learn.org/stable/modules/generated/sklearn.datasets.make_blobs.html#sklearn.datasets.make_blobs) function in sklearn to produce toy dataset.
 
-```
-$ cd examples
-$ python kmeans.py
-```
+<p align="center">
+    <img src="https://raw.githubusercontent.com/zhuzilin/NP_ML/master/examples/figures/kmeans.png" width="480">
+</p>
+<p align="center">
+    Kmeans result on the blob dataset.
+</p>
+
+- Affinity Propagation
+
+You can think affinity propagation as an cluster algorithm that generate cluster number automatically.
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/zhuzilin/NP_ML/master/examples/figures/kmeans.png" width="640">
+    <img src="https://raw.githubusercontent.com/zhuzilin/NP_ML/master/examples/figures/affinity_propagation.png" width="480">
 </p>
 <p align="center">
     Kmeans result on the blob dataset.
 </p>
 
 ### Manifold Learning<a name="manifold-learning"></a>
-In manifold learning, we all use the simple curve-s data.
+In manifold learning, we all use the simple curve-s data to show the difference between algorithms.
 
 <p align="center">
     <img src="https://raw.githubusercontent.com/zhuzilin/NP_ML/master/examples/figures/curve_s.png" width="640">
@@ -175,13 +163,10 @@ In manifold learning, we all use the simple curve-s data.
 
 - PCA
 
-```
-$ cd examples
-$ python pca.py
-```
+The most popular way to reduce dimension.
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/zhuzilin/NP_ML/master/examples/figures/pca.png" width="640">
+    <img src="https://raw.githubusercontent.com/zhuzilin/NP_ML/master/examples/figures/pca.png" width="480">
 </p>
 <p align="center">
     PCA visualization.
@@ -189,13 +174,10 @@ $ python pca.py
 
 - LLE
 
-```
-$ cd examples
-$ python lle.py
-```
+A manifold learning method using only local information.
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/zhuzilin/NP_ML/master/examples/figures/lle.png" width="640">
+    <img src="https://raw.githubusercontent.com/zhuzilin/NP_ML/master/examples/figures/lle.png" width="480">
 </p>
 <p align="center">
     LLE visualization.
@@ -216,9 +198,20 @@ If you want to use the visual example, please install the package by:
   $ python setup.py install
 ```
 
+- Examples in section "Algorithm List"
+
+Run the script in NP_ML/example/ . For example:
+
+```
+  $ cd example/
+  $ python affinity_propagation.py
+```
+
+(Mac/Linux user may face some issue with the data directory. Please change them in the correspondent script).
+
 - Examples for *Statistical Learning Method*(《统计学习方法》)
 
-For example: 
+Run the script in NP_ML/example/StatisticalLearningMethod/ .For example: 
 
 ```
   $ cd example/StatisticalLearningMethod
@@ -228,3 +221,6 @@ For example:
 Classical ML algorithms was validated by naive examples in [*Statistical Learning Method*(《统计学习方法》)](https://www.amazon.com/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%EF%BC%88%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95-%E7%BB%9F%E8%AE%A1%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-%E7%AC%AC2%E7%89%88-%E5%85%B12%E6%9C%AC%E5%A5%97%E8%A3%85%EF%BC%89-Chinese-ebook/dp/B01M8KB8FF/ref=sr_1_1?ie=UTF8&qid=1521303280&sr=8-1&keywords=%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95)
 
 Time series models was validated by example in [Bus 41202](http://faculty.chicagobooth.edu/ruey.tsay/teaching/bs41202/sp2017/)
+
+## Something Else
+Currently, this repo will only implement algorithms that do not need gradient descent. Those would be arranged in another repo in which I would implement those using framework like pytorch. Coming soon:)
