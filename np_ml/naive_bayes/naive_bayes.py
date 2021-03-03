@@ -25,7 +25,7 @@ class NaiveBayes:
                 for y in self.y:
                     self.priors[y] += 1
         # initialize the counting dictionary
-        # here we assume the order in x in insignificance.
+        # here we assume the order in x is insignificance.
         if self.cnts is None:
             self.cnts = {}
             self.total = {}
@@ -42,7 +42,7 @@ class NaiveBayes:
                             self.cnts[self.y[i]][element] = 1
                         else:
                             self.cnts[self.y[i]][element] += 1
-                        self.total[y] += 1
+                        self.total[self.y[i]] += 1
         if not x or type(x[0]) != list:
             max_posterior = 0
             max_y = None
